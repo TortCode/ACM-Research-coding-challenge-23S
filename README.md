@@ -27,6 +27,7 @@ Then we map the letters in `spectral_cls` to numbers as follows
 5. G
 6. K
 7. M
+
 and store the new column as `spec_cls_num`.
 
 Additionally, spectral classes are closely related with star colors, so we map each color to its most commonly associated spectral class number and store this column as `color_num`.
