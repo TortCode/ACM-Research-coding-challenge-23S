@@ -1,14 +1,4 @@
-# Distinguishing features of stars analysis (Spring 2023)
-
-Please note that the star type, denoted as integers, are translated as the following:
-- Brown Dwarf -> Star Type = 0
-- Red Dwarf -> Star Type = 1
-- White Dwarf -> Star Type = 2
-- Main Sequence -> Star Type = 3
-- Supergiant -> Star Type = 4
-- Hypergiant -> Star Type = 5
-
----
+# Distinguishing features of stars analysis
 
 ## Traditional Hertzsprung-Russell (HR) Diagram
 
@@ -16,7 +6,32 @@ The standard diagram used to display the categories of stars is the HR diagram w
 
 ![full_hr](https://user-images.githubusercontent.com/44101297/214127455-358f40d8-e882-4106-bf61-7806d7397cac.png)
 
-From this diagram it is hard to distinguish supergiants from hypergiants and also brown dwarves from red dwarves, so we need to look for better properties to distinguish these classes. 
+From this diagram it is hard to distinguish supergiants from hypergiants and also brown dwarves from red dwarves, so we need to look for better properties to distinguish these classes.
+
+## Data Augmentation
+
+We rename various columns to easier to type names as follows.
+- rad: Radius
+- temp: Temperature
+- lum: Luminosity
+- abs_mag: Absolute Magnitude
+- type: Star Type
+- color: Star Color
+- spectral_cls: Spectral Class
+
+Then we map the letters in `spectral_cls` to numbers as follows
+1. O
+2. B
+3. A
+4. F
+5. G
+6. K
+7. M
+and store the new column as `spec_cls_num`.
+
+Additionally, spectral classes are closely related with star colors, so we map each color to its most commonly associated spectral class number and store this column as `color_num`.
+
+Finally, to discover exponential patterns using linear correlations, we add columns `log_temp`, `log_rad`, and `log_lum`, which contain the natural logarithms of their counterparts.
 
 ## Giants Analysis
 
@@ -42,13 +57,8 @@ Again, absolute magnitude and radius are good properties to investigate. Plottin
 
 Both of these unusual categories are distinguished well via radius and absolute magnitude. We plot these two properties for the entire dataset below.
 
-![absmag_rad_plot](https://user-images.githubusercontent.com/44101297/214143274-ba603d46-c3b6-48b3-8544-83cc4c7ac7e4.png)
+![absmag_rad_plot](https://user-images.githubusercontent.com/44101297/214155247-95fd7fdf-fb17-408c-b823-21d0c5ebced8.png)
 
 Absolute magnitude and radius divide the entire dataset beautifully into rectangular portions for each type. These two features contain all the information needed to categorize stars into different types. 
+
 A simple decision tree could be trained on these features to classify stars.
-
-
-
-
-
-3. Replace this README file with a description ([written in Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/about-writing-and-formatting-on-github)) of your solution. Regardless of your success, describe the problem you set out to solve and how you did it. Split it up into sections with headers, and, if relevant, include figures.
